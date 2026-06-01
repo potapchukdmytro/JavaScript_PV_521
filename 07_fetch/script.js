@@ -29,9 +29,22 @@ function getWindDirection(deg) {
     }
 }
 
+function getTime(unixTimestamp) {
+    const date = new Date(unixTimestamp * 1000);
+    let hours = date.getHours().toString();;
+    let minutes = date.getMinutes().toString();
+
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+
+    return `${hours}:${minutes}`;
+}
+
 async function fetchWeather() {
+    const cityInput = document.getElementById("cityInput").value;
+
     const key = "bbdf358dd1b3ee7925ab2c9bca2e61f6";
-    const city = "London";
+    const city = cityInput || "London";
     const lang = "uk";
     const units = "metric";
     // ? - говорить що далі будуть query параметри
@@ -39,16 +52,21 @@ async function fetchWeather() {
     const response = await fetch(url);
     const data = await response.json();
 
+    const urlGeo = `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=bbdf358dd1b3ee7925ab2c9bca2e61f6&limit=1`;
+    const responseGeo = await fetch(urlGeo);
+    const dataGeo = await responseGeo.json();
+
     const div = document.getElementById("weather");
     div.innerHTML = `
-            <h1>Погода</h1>
+            <h1>Погода у ${dataGeo[0].local_names.uk}</h1>
+            <img alt="icon" src="https://openweathermap.org/payload/api/media/file/${data.weather[0].icon}.png" height="50px">
             <div style="text-align: start;">
                 <h3>Температура: ${data.main.temp}°C</h3>
                 <h3>Тиск: ${data.main.pressure} гПа</h3>
                 <h3>Швидкість вітру: ${data.wind.speed} м/с</h3>
                 <h3>Напрям вітру: ${getWindDirection(data.wind.deg)}</h3>
-                <h3>Схід: 06:00</h3>
-                <h3>Захід: 20:00</h3>
+                <h3>Схід: ${getTime(data.sys.sunrise)}</h3>
+                <h3>Захід: ${getTime(data.sys.sunset)}</h3>
             </div>
             `;
 }

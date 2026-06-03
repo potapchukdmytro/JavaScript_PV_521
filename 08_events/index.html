@@ -6,6 +6,10 @@
         <title>Events</title>
     </head>
     <body>
+        <h1 id="inputText"></h1>
+        <div style="text-align: end;">
+            <h1 id="windowSize"></h1>
+        </div>
         <div>
             <button onclick="clickButton(event)">onClick html</button>
             <button id="btn2">onClick js</button>
@@ -70,7 +74,50 @@
                     background-color: black;
                 "
             ></div>
-            <button onclick="randomColor()" style="margin-top: 10px">Random color</button>
+            <button onclick="randomColor()" style="margin-top: 10px">
+                Random color
+            </button>
+        </div>
+
+        <!-- Квадрат що рухається -->
+        <div
+            id="parentDiv"
+            style="
+                width: 100%;
+                margin: auto;
+                height: 300px;
+                margin-top: 50px;
+                display: flex;
+                align-items: center;
+            "
+        >
+            <div
+                id="runner"
+                style="
+                    position: relative;
+                    display: inline-block;
+                    height: 200px;
+                    width: 200px;
+                    left: 0px;
+                    background-color: brown;
+                    transition: left 2s linear, transform 2s linear;
+                "
+            ></div>
+        </div>
+        <div style="text-align: center">
+            <button
+                onclick="moveSquare()"
+                style="
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    background-color: lightcoral;
+                    border: none;
+                    padding: 16px;
+                    border-radius: 10px;
+                "
+            >
+                Move square
+            </button>
         </div>
 
         <script src="script.js"></script>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Events</title>
+    </head>
+    <body>
+        <div>
+            <button onclick="clickButton(event)">onClick html</button>
+            <button id="btn2">onClick js</button>
+            <button id="btn3">click event listener</button>
+        </div>
+
+        <!-- Квадрати з ефектами миші -->
+        <div style="display: flex; justify-content: center">
+            <div
+                onmouseenter="mouseEnter(event)"
+                onmouseleave="mouseLeave(event)"
+                style="
+                    margin: 16px;
+                    display: inline-block;
+                    width: 100px;
+                    height: 100px;
+                    background-color: #524848;
+                "
+            ></div>
+
+            <div
+                onmouseenter="mouseEnter(event)"
+                onmouseleave="mouseLeave(event)"
+                style="
+                    margin: 16px;
+                    display: inline-block;
+                    width: 100px;
+                    height: 100px;
+                    background-color: #524848;
+                "
+            ></div>
+        </div>
+
+        <!-- Коло для переміщення за курсором -->
+        <div
+            id="circle"
+            style="
+                display: inline-block;
+                border-radius: 50%;
+                background-color: #b7b92f;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+            "
+        ></div>
+
+        <!-- Випадковий колір для квадрату -->
+        <div
+            style="
+                display: flex;
+                align-items: center;
+                margin-top: 20px;
+                flex-direction: column;
+            "
+        >
+            <div
+                id="randomColorSquare"
+                style="
+                    display: inline-block;
+                    width: 250px;
+                    height: 250px;
+                    background-color: black;
+                "
+            ></div>
+            <button onclick="randomColor()" style="margin-top: 10px">Random color</button>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

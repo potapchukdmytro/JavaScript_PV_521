@@ -55,3 +55,24 @@ function selectFiles(event) {
         }
     }
 }
+
+function createFigure(event) {
+    event.preventDefault();
+    const form = event.target;
+    const width = parseInt(form["width"].value);
+    const height = parseInt(form["height"].value);
+    const color = form["color"].value;
+    const figure = form["figure"].value;
+    const div = document.getElementById("figures");
+
+    if (figure === "rect") {
+        div.innerHTML += `
+    <div style="display: inline-block; width: ${width}px; height: ${height}px; background-color: ${color};"></div>`;
+    } else if (figure === "circle") {
+        div.innerHTML += `
+    <div style="display: inline-block; width: ${width}px; height: ${height}px; background-color: ${color}; border-radius: 50%;"></div>`;
+    } else if (figure === "triangle") {
+        div.innerHTML += `
+     <div style="display: inline-block; width: 0; height: 0; border-style: solid; border-width: 0px ${width / 2}px ${height}px ${width / 2}px; border-color: transparent transparent ${color} transparent;"></div>`;
+    }
+}

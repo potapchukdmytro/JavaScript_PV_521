@@ -1,0 +1,23 @@
+.submit-btn {
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    background-color: lightcoral;
+    padding: 8px 16px;
+}
+
+.submit-btn:hover {
+    cursor: pointer;
+    background-color: rgb(207, 117, 117);
+}
+
+input, label {
+    font-size: 1.1em;
+}
+
+.input-group {
+    display: flex; 
+    flex-direction: column;
+    margin: 12px 0px;
+}

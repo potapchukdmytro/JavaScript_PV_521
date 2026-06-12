@@ -79,7 +79,6 @@ function getAllCookie() {
 
 
 
-
 function formSetCookie(event) {
     event.preventDefault();
     const form = event.target;
@@ -89,4 +88,30 @@ function formSetCookie(event) {
     const expires = form["expires"].value;
 
     setCookie(key, value, new Date(expires).toUTCString());
+    showAllCookie();
 }
+
+function formRemoveCookie(event) {
+    event.preventDefault();
+    const form = event.target;
+
+    const key = form["key"].value;
+
+    removeCookie(key);
+    showAllCookie();
+}
+
+function showAllCookie() {
+    const table = document.getElementById("tableBody");
+    const cookie = getAllCookie();
+
+    table.innerHTML = "";
+    for(const c of cookie) {
+        table.innerHTML += `<tr>
+                    <th scope="row">${c.key}</th>
+                    <td>${c.value}</td>
+                </tr>`
+    }
+}
+
+showAllCookie();

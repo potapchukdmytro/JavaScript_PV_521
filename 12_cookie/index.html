@@ -10,7 +10,10 @@
         <title>12_Cookie</title>
     </head>
     <body>
-        <form onsubmit="formSetCookie(event)" class="w-25 m-auto p-3 border border-2 border-black bor mt-3">
+        <form
+            onsubmit="formSetCookie(event)"
+            class="w-25 m-auto p-3 border border-2 border-black bor mt-3"
+        >
             <div class="input-group d-flex flex-column">
                 <label class="form-label">Ключ</label>
                 <input name="key" type="text" class="form-text" />
@@ -24,9 +27,37 @@
                 <input name="expires" type="datetime-local" class="form-text" />
             </div>
             <div>
-                <button type="submit" class="btn btn-primary w-100 mt-4">Додати</button>
+                <button type="submit" class="btn btn-primary w-100 mt-4">
+                    Додати
+                </button>
             </div>
         </form>
+
+        <form
+            onsubmit="formRemoveCookie(event)"
+            class="w-25 m-auto p-3 border border-2 border-black bor mt-3"
+        >
+            <div class="input-group d-flex flex-column">
+                <label class="form-label">Ключ</label>
+                <input name="key" type="text" class="form-text" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-danger w-100 mt-4">
+                    Видалити
+                </button>
+            </div>
+        </form>
+
+        <table class="table w-25 m-auto text-center">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Value</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
 
         <script src="script.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>

@@ -78,6 +78,8 @@ function loginSubmit(event) {
         const user = users.find((u) => u.email === data.email);
         if (user) {
             if (user.password === data.password) {
+                // успішний вхід
+                localStorage.setItem("user", JSON.stringify(user));
                 window.location = "/";
             } else {
                 alert("Пароль вказано невірно");
@@ -88,7 +90,41 @@ function loginSubmit(event) {
     }
 }
 
+function logout() {
+    localStorage.removeItem("user");
+    // location.reload() - перезавантажити сторінку
+    location.reload();
+}
+
 function navbar() {
+    let authButtons = 
+                    `<a class="nav-link active" aria-current="page" href="/login"
+                        >Увійти
+                    </a>
+                    <a
+                        class="nav-link active"
+                        aria-current="page"
+                        href="/register"
+                        >Зареєструватися
+                    </a>`;
+
+    const userJson = localStorage.getItem("user");
+    if (userJson) {
+        const user = JSON.parse(userJson);
+
+        authButtons = 
+                    `<a class="nav-link active" aria-current="page" href="/profile"
+                        >${user.name}
+                    </a>
+                    <button
+                        onclick="logout()"
+                        class="nav-link active"
+                        aria-current="page"
+                        href="/register"
+                        >Вийти
+                    </button>`;
+    }
+
     return `
         <nav class="navbar navbar-expand-lg bg-secondary">
             <div class="container-fluid">
@@ -117,15 +153,7 @@ function navbar() {
                     </ul>
                 </div>
                 <div class="me-3 d-flex gap-4">
-                    <a class="nav-link active" aria-current="page" href="/login"
-                        >Увійти</a
-                    >
-                    <a
-                        class="nav-link active"
-                        aria-current="page"
-                        href="/register"
-                        >Зареєструватися</a
-                    >
+                    ${authButtons}
                 </div>
             </div>
         </nav>
@@ -133,6 +161,6 @@ function navbar() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-   const div = document.getElementById("navbar");
-   div.innerHTML = navbar(); 
+    const div = document.getElementById("navbar");
+    div.innerHTML = navbar();
 });

@@ -103,3 +103,15 @@ Promise.all([f1(), f2(), f3()])
 
 Promise.allSettled([f1(), f2(), f3()])
     .then(res => console.log(res));
+
+
+
+// Promise.race(); - повертає результат promise який виконався найшвидше з помилкою або без
+Promise.race([f1(), f2(), f3()])
+    .then(res => console.log(res));
+
+
+// Promise.race(); - чекає на перший успішний promise.
+// Якщо хоча б один буде reject то зупиняється
+Promise.any([f1(), f2(), f3()])
+    .then(res => console.log(res));

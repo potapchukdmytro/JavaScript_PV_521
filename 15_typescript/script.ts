@@ -156,3 +156,18 @@ const responseCode = 200;
 
 console.log(StatusCode[responseCode]);
 
+
+
+
+
+type FunnyType = Cat | Dog | "Я люблю тваринок";
+
+const funny: FunnyType = "Я люблю тваринок";
+
+type Winter = "Грудень" | "Січень" | "Лютий";
+
+const month: Winter = "Грудень";
+
+type Age = 18 | 28 | 38;
+
+const userAge: Age = 18;
